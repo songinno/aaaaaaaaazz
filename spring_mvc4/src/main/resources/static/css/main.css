@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+
+/* reset */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    outline: none;
+    border: none;
+}
+
+/* common */
+.wrap {
+    font: 15px "Noto Sans KR", sans-serif;
+}
+
+.hide {
+    display: none !important;
+}
+
+/* header style */
+header {
+    width: 100%;
+    /* background: red; */
+    position: fixed;
+    z-index: 100;
+    top: 0;
+}
+
+header .inner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background: orange; */
+    width: 92%;
+    margin: 0 auto;
+    height: 120px;
+}
+
+header .inner-header .logo {
+    /* background: tomato; */
+    flex: 1;
+    width: 150px;
+}
+
+header .inner-header .logo a {
+    display: block;
+    width: 100%;
+}
+
+header .inner-header .logo a img {
+    height: 60px;
+}
+
+header .inner-header .intro-text {
+    /* background: skyblue; */
+    flex: 4;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-left: 40px;
+}
+
+header .inner-header .menu-open {
+    /* background: greenyellow; */
+    flex: 1;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header .inner-header .menu-open .lnr-menu {
+    font-size: 33px;
+    margin-left: 15px;
+}
+
+/* menu navigation */
+header .gnb {
+    background: #000;
+    height: 100vh;
+    color: #666;
+    font-size: 40px;
+    padding: 70px 100px;
+    box-sizing: border-box;
+
+    position: absolute;
+    right: -1000px;
+    top: 0;
+    transition: 0.6s;
+
+    display: flex;
+    flex-direction: row-reverse;
+}
+header .gnb.on {
+    right: 0;
+}
+
+
+header .gnb .close {
+    display: block;
+    color: #fff;
+}
+header .gnb ul {
+    margin-right: 200px;
+}
+header .gnb ul li {
+    font-weight: 700;
+    line-height: 1.7;
+}
+header .gnb ul li:first-child,
+header .gnb ul li:hover {
+    color: #fff;
+}
+
+/* index를 제외한 header */
+header.common {
+    background: #1b1b1b;
+}
+
+
+/* section visual style */
+section.visual .slide li {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+section.visual .slide li img {
+    width: 100%;
+    position: absolute;
+    top: -100px;
+}
+
+section.visual .slide li .txt {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #fff;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+}
+
+section.visual .slide li .txt h3 {
+    margin: 30px 0;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+section.visual .slide li .scroll {
+    /* background: orange; */
+    position: absolute;
+    left: 50px;
+    bottom: 10%;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ccc;
+    transform: rotate(-90deg);
+}
+
+/* section contents style */
+section.contents {
+    background: #1b1b1b;
+    color: #fff;
+    padding: 120px 0;
+}
+
+section.contents .main-text {
+    /* background: tomato; */
+    width: 65%;
+    margin: 0 auto;
+    font-size: 25px;
+    display: flex;
+    position: relative;
+}
+
+section.contents .main-text::before {
+    content: '';
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #ffec03;
+    position: absolute;
+    left: 70px;
+    top: 130px;
+}
+
+section.contents .main-text::after {
+    content: '”';
+    font-size: 300px;
+    position: absolute;
+    left: 0;
+    top: 60px;
+}
+
+
+section.contents .main-text h3 {
+    /* background: red; */
+    flex: 1;
+    font-weight: 700;
+}
+
+section.contents .main-text p {
+    /* background: blue; */
+    flex: 1.5;
+    line-height: 1.4;
+}
+
+section.contents .main-text p span {
+    display: block;
+    margin-top: 30px;
+    font-size: 20px;
+    color: #999;
+}
+
+/* projects style */
+section.contents .project .top {
+    width: 65%;
+    margin: 200px auto 60px;
+    /* background: tomato; */
+    display: flex;
+    justify-content: space-between;
+}
+
+section.contents .project .top h3 {
+    /* background: red; */
+    font-size: 35px;
+    font-weight: 700;
+}
+
+section.contents .project .top a {
+    /* background: blue; */
+    font-size: 18px;
+}
+
+section.contents .project ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+section.contents .project ul li {
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+section.contents .project ul li a {
+    display: block;
+    width: 100%;
+}
+
+section.contents .project ul li a img {
+    width: 100%;
+}
+
+section.contents .project ul li a::before {
+    content: '';
+    width: 0;
+    height: 100%;
+    background: rgba(27, 27, 27, .9);
+    position: absolute;
+    transition: 0.6s;
+}
+
+section.contents .project ul li a:hover::before {
+    width: 100%;
+}
+
+section.contents .project ul li a .name {
+    font-size: 22px;
+    text-align: right;
+    background: #1b1b1b;
+    width: 250px;
+    padding: 15px;
+    box-sizing: border-box;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    opacity: 0;
+}
+
+section.contents .project ul li a:hover .name {
+    opacity: 1;
+    animation: rise-up 1s;
+}
+
+@keyframes rise-up {
+    0% {
+        opacity: 0;
+        bottom: -30px;
+    }
+
+    100% {
+        opacity: 1;
+        bottom: 10px;
+    }
+}
+
+section.contents .project ul li a .name span {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* partner style */
+section.contents .partner {
+    width: 65%;
+    margin: 170px auto 100px;
+}
+
+section.contents .partner h3 {
+    font-size: 17px;
+    margin-bottom: 80px;
+}
+
+section.contents .partner ul {
+    /* background: orange; */
+    display: flex;
+    flex-wrap: wrap;
+}
+section.contents .partner ul li {
+    width: 25%;
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section.contents .partner ul li img {
+    opacity: 0.3;
+    transition: 0.2s;
+}
+section.contents .partner ul li img:hover {
+    opacity: 1;
+}
+
+/* contact style */
+section.contents .contact {
+    width: 90%;
+    background: url('../img/contact.jpg') no-repeat center/cover fixed;
+    padding: 220px 0;
+}
+section.contents .contact .inner {
+    width: 70%;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.4;
+}
+section.contents .contact .inner .tel {
+    font-size: 55px;
+    font-weight: 700;
+    margin: 50px 0;
+}
+
+/* footer */
+footer {
+    background: #1b1b1b;
+    color: #999;
+    padding: 0 80px 80px;
+}
+footer ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+footer ul li:nth-child(2) {
+    color: #eee;
+    font-size: 16px;
+    line-height: 2;
+}
+footer ul li:nth-child(2) span {
+    font-weight: 700;
+    margin-right: 10px;
+    color: #999;
+}
+
+footer .go-top {
+    color: #fff;
+    font-size: 50px;
+    position: fixed;
+    right: 50px;
+    bottom: 60px;    
+}

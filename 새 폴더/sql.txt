@@ -1,0 +1,31 @@
+Microsoft Windows [Version 10.0.19043.1288]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\java4>sqlplus
+
+SQL*Plus: Release 11.2.0.2.0 Production on 화 11월 9 14:27:55 2021
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter user-name: sys /as sysdba
+Enter password:
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> CREATE USER spring4 IDENTIFIED BY 1234;
+
+User created.
+
+SQL> GRANT DBA, CONNECT TO spring4;
+
+Grant succeeded.
+
+SQL> conn spring4
+Enter password:
+Connected.
+SQL> SELECT SYSDATE FROM dual;
+
+SYSDATE
+--------
+21/11/09
