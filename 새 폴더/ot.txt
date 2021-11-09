@@ -1,0 +1,47 @@
+IP: 컴퓨터 한대당 집 주소.
+PORT: 컴퓨터 방 번호
+
+프로그램 하나당 포트 1개 배정받음. 
+
+main >>>>> mvc > MvcApplication 실행하면 오류남.
+
+Web server failed to start. Port 8080 was already in use.
+8080포트가 이미 쓰고있음.
+오라클이 8080
+TOMCAT이랑 충돌.
+
+#톰캣 포트를 바꾸기.
+resources > application.properties
+server.port = 8081
+(*실제로 운영으로 할 때는 80번으로)
+
+재실행
+Tomcat started on port(s): 8081 (http) with context path 
+''2021-11-01 13:33:51.914  INFO 5864 --- [main] com.spring.mvc.MvcApplication : Started MvcApplication in 1.521 seconds (JVM running for 1.864)
+=> 돌아가고있는거(무한루프로)
+
+resources > static에 html 파일 만들어서 수정
+
+#브라우저가서 확인하기
+cmd > ipconfig : ip주소 확인하기
+
+이더넷 어댑터 이더넷:
+IPv4 주소 . . . . . . . . . : 192.168.1.78
+
+http://192.168.1.78:8081/
+= http://127.0.0.1:8081/
+= http://localhost:8081/
+
+127.0.0.1 -> 우리집 (= localhost)
+
+////////////////////////////////////////////////////////
+http://localhost:8081/about?msg=메롱메롱
+?msg=메롱메롱 -> 요청 파라미터
+
+http://localhost:8081/about?msg=hello&hobby=soccer
+=>
+/about 요청이 들어옴.
+/about
+msg=hello&hobby=soccer
+hello
+soccer

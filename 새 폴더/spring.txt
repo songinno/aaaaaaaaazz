@@ -1,0 +1,21 @@
+https://start.spring.io/
+
+gradle project
+
+java
+
+2.5.6
+
+G - 도메인주소 // com.spring
+A - 루트 디렉토리 -> 프로젝트 이름. // core => 루트 패키지: com.spring.core 이렇게 됨.
+N - //spring_core_basic
+D //놔둬
+P // "
+P // War(웹서버 포함) (Jar는 내부에) 
+J 
+
+-> generate
+
+//////////////
+https://spring.io/
+maven repository
