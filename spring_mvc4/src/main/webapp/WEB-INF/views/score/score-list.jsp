@@ -38,6 +38,16 @@
         padding: 200px 50px 100px;
         font-size: 1.5em;
     }
+    section.score label {
+        margin-bottom: 3px;
+    }
+    section.score input {
+        border: 1px solid #000;
+    }
+
+    .nm {
+        color: purple;
+    }
 </style>
 </head>
 
@@ -74,7 +84,7 @@
                 <li>총 학생 수: ${scores.size()}명</li>
                 <c:forEach var="s" items="${scores}">
                     <li>
-                        #학번: ${s.stuNum}, 이름: <a href="/score/detail?stuNum=${s.stuNum}">${s.markName}</a>, 국어:
+                        #학번: ${s.stuNum}, 이름: <a class="nm" href="/score/detail?stuNum=${s.stuNum}">${s.markName}</a>, 국어:
                         ${s.kor}점,
                         영어: ${s.eng}점, 수학: ${s.math}점
                         , 총점: ${s.total}점, 평균: ${s.average}점

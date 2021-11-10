@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 @Setter @Getter @ToString
 public class Score {
 
@@ -40,6 +43,18 @@ public class Score {
         this.math = math;
         calcTotal();
     }
+
+    //+ DB 생성자
+    public Score(ResultSet rs) throws SQLException {
+        this.stuNum = rs.getInt("stu_num");
+        this.name = rs.getString("stu_name");
+        this.kor = rs.getInt("kor");
+        this.eng = rs.getInt("eng");
+        this.math = rs.getInt("math");
+        this.total = rs.getInt("total");
+        this.average = rs.getDouble("average");
+    }
+
 
     //총점, 평균을 구하는 메서드
     //총점,평균 구하기에 여기 클래스가 제일 적합함(직접적으로 데이터들을 갖고 있어서)
