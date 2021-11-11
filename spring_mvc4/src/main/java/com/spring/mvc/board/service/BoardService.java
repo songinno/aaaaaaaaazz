@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -17,7 +18,7 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
     @Autowired
-    public BoardService(@Qualifier("br") BoardRepository boardRepository) {
+    public BoardService(@Qualifier("sbr") BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
@@ -25,12 +26,15 @@ public class BoardService {
     public List<Board> getList() {
         List<Board> articles = boardRepository.getArticles();
 
-        //역정렬 (최신 게시물이 위로 올라오게)
-        List<Board> sortedList = new ArrayList<>();
-        for (int i = articles.size()-1; i >= 0; i--) {
-            sortedList.add(articles.get(i));
-        }
-        return sortedList;
+        List<Board> sortedList = null;
+
+            //역정렬 (최신 게시물이 위로 올라오게)
+            sortedList = new ArrayList<>();
+            for (int i = articles.size()-1; i >= 0; i--) {
+                sortedList.add(articles.get(i));
+            }
+            return sortedList;
+
     }
 
     //글쓰기 중간처리

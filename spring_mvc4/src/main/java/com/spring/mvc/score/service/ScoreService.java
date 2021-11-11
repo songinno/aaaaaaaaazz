@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -19,7 +20,7 @@ public class ScoreService {
     private final ScoreRepository scoreRepository;
 
     @Autowired // 하나밖에 없어서 안써도됨.
-    public ScoreService(@Qualifier("jr") ScoreRepository scoreRepository) {
+    public ScoreService(@Qualifier("ssr") ScoreRepository scoreRepository) {
         this.scoreRepository = scoreRepository;
     }
 
@@ -29,23 +30,28 @@ public class ScoreService {
         scoreRepository.save(score);
     }
 
-    //전체조회 중간처리
+    //전체조회 중간처리 (+null체크 -> 500번 에러 안나게. 500 에러는 항상 안나오게 하는게 좋음.)
     public List<Score> getList() {
         List<Score> scoreList = scoreRepository.findAll();
         //이름에 마킹처리
-        for (Score score : scoreList) {
-            //이름 빼오기
-            String name = score.getName();
-            //성뽑기
-            String family = String.valueOf(name.charAt(0));
-            //성을 제외한 이름 수
-            int length = name.length() - 1;
-            for (int i = 0; i < length; i++) {
-                family += "*";
+        if (scoreList != null) {
+            for (Score score : scoreList) {
+                //이름 빼오기
+                String name = score.getName();
+                //성뽑기
+                String family = String.valueOf(name.charAt(0));
+                //성을 제외한 이름 수
+                int length = name.length() - 1;
+                for (int i = 0; i < length; i++) {
+                    family += "*";
+                }
+                score.setMarkName(family);
             }
-            score.setMarkName(family);
+            return scoreList;
+        } else {
+            return Collections.emptyList(); // 빈 리스트 리턴
         }
-        return scoreList;
+
     }
 
     //삭제 중간처리
