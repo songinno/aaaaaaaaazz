@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 @Setter @Getter @ToString
 public class Board {
@@ -13,9 +14,11 @@ public class Board {
     private String writer; //작성자
     private String title; // 글제목
     private String content; // 글내용
-
-    private int viewCount; //조회수
-    private String regDate; // 작성일
+    //++
+    private int viewCnt; //조회수
+    private Date regDate; // 작성일 (마이바티스에서 LocalDate 이거 까다로움.)
+    private String regDateStr; // 포맷팅된 날짜문자열 (여기다 담아서 jsp로 보내려고 만듦)
+    // 근데 애초에 String 타입으로 만들고 했더니 원하던 바 대로 나왔음..
 
     private static long seq;
 
@@ -35,9 +38,9 @@ public class Board {
         this.writer = rs.getString("writer");
         this.title = rs.getString("title");
         this.content = rs.getString("content");
-        //밑에 2개는 아직 나중에.
-        this.viewCount = rs.getInt("view_cnt");
-        this.regDate = rs.getString("reg_date");
+        //++
+        this.viewCnt = rs.getInt("view_cnt");
+        this.regDate = rs.getDate("reg_date");
 //        this.regDate = rs.getString(6);
     }
 }

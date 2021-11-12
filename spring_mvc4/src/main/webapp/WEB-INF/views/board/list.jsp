@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- 날짜 포맷 변경하려고 만든거 ▽ -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -51,8 +54,10 @@
                         <td>${b.boardNo}</td>
                         <td>${b.writer}</td>
                         <td>${b.title}</td>
-                        <td>0</td>
-                        <td></td>
+                        <td>${b.viewCnt}</td>
+                        <td>
+                            <fmt:formatDate value="${b.regDate}" pattern="yyyy년 MM월 dd일 hh:mm" />
+                        </td>
                     </tr>
                 </c:forEach>
             </table>

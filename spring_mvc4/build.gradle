@@ -37,6 +37,12 @@ dependencies {
 	implementation fileTree(dir: '/src/main/webapp/WEB-INF/lib', include: ['*.jar'])
 	//-> 수동설치 해야함.
 	//C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib
+
+	//*mybatis
+	//기본적으로 jdbc가 있어야함
+	//마이바티스 라이브러리
+	implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0"
+
 }
 
 test {
