@@ -1,6 +1,7 @@
 <!-- 상세조회 -->
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -35,10 +36,20 @@
     }
 
     .content-container .custom-btn-group {
-        position: absolute;
-        bottom:-10%;
+        /* position: absolute;
+        bottom: -10%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%); */
+    }
+
+    .content-container .bottom-group {
+        display: flex;
+        justify-content: space-between;
+    }
+    .content-container .bottom-group .update-time {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #333;
     }
 </style>
 
@@ -66,12 +77,22 @@
                 </p>
             </div>
 
-            <div class="btn-group btn-group-lg custom-btn-group" role="group">
-                <button id="mod-btn" type="button" class="btn btn-warning">수정</button>
-                <button id="del-btn" type="button" class="btn btn-danger">삭제</button>
-                <button id="list-btn" type="button" class="btn btn-success">목록</button>
-              </div>
+            <div class="bottom-group">
+                <div class="update-time">
+                    <c:if test="${b.updateDate != null}">
+                        <span class="time">
+                            마지막 수정 시간: <fmt:formatDate value="${b.updateDate}" pattern="yyyy년 MM월 dd일 a hh:mm" />
+                        </span>
+                    </c:if>
+                </div>
 
+                
+                <div class="btn-group btn-group-lg custom-btn-group" role="group">
+                    <button id="mod-btn" type="button" class="btn btn-warning">수정</button>
+                    <button id="del-btn" type="button" class="btn btn-danger">삭제</button>
+                    <button id="list-btn" type="button" class="btn btn-success">목록</button>
+                </div>
+            </div>
         </div>
 
         <%@ include file="../include/footer.jsp" %>
@@ -82,23 +103,22 @@
         //수정버튼
         // const $modBtn = document.getElementById('mod-btn');
         $modBtn.onclick = e => {
-            location.href='/board/modify?boardNo=${b.boardNo}';
+            location.href = '/board/modify?boardNo=${b.boardNo}';
         };
         //삭제버튼    
         $delBtn.onclick = e => {
-            if(!confirm('정말 삭제하시겠습니까?')) {
+            if (!confirm('정말 삭제하시겠습니까?')) {
                 return;
             } else {
-                location.href='/board/delete?boardNo=${b.boardNo}';
+                location.href = '/board/delete?boardNo=${b.boardNo}';
             }
-            
+
         };
         //목록버튼
         $listBtn.onclick = e => {
-            location.href ='/board/list';
-        
-        };
+            location.href = '/board/list';
 
+        };
     </script>
 </body>
 

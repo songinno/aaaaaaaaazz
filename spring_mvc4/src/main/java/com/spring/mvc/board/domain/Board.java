@@ -18,7 +18,10 @@ public class Board {
     private int viewCnt; //조회수
     private Date regDate; // 작성일 (마이바티스에서 LocalDate 이거 까다로움.)
     private String regDateStr; // 포맷팅된 날짜문자열 (여기다 담아서 jsp로 보내려고 만듦)
-    // 근데 애초에 String 타입으로 만들고 했더니 원하던 바 대로 나왔음..
+
+    //+++
+    private boolean newFlag; // 신규글 여부
+    private Date updateDate; // 최종 수정시간
 
     private static long seq;
 

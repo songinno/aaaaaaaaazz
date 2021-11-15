@@ -18,7 +18,7 @@
 
     <!-- 게시물 수정-->
     <update id="update">
-        UPDATE board SET writer = #{writer}, title = #{title}, content = #{content} WHERE board_no = #{boardNo}
+        UPDATE board SET writer = #{writer}, title = #{title}, content = #{content}, update_date=SYSDATE WHERE board_no = #{boardNo}
     </update>
 
     <!--resultMap 작성 -->
@@ -27,17 +27,27 @@
         <result property="boardNo" column="board_no" />
         <result column="view_cnt" property="viewCnt" />
         <result property="regDate" column="reg_date" />
+        <result property="updateDate" column="update_date"/>
     </resultMap>
 
     <!-- 전체 조회  -->
     <select id="getArticles" resultMap="boardMap">
-        SELECT * FROM board ORDER BY board_no
+<!--        SELECT * FROM board ORDER BY board_no DESC-->
+        <![CDATA[
+            SELECT
+            board_no, title, writer, content, view_cnt, reg_date
+            FROM
+            (SELECT /*+INDEX_DESC(board pk_board)*/ rownum rn, board_no, title, writer, content, view_cnt, reg_date FROM board WHERE rownum <= #{pageNum} * #{amount})
+            WHERE rn >  (#{pageNum} - 1) * #{amount}
+        ]]>
+    <!-- CDATA: <,>,= 같은거 쓸 수 있게 해주는거 -->
     </select>
 
     <!-- 게시물 상세조회    -->
     <select id="getContent" resultMap="boardMap">
         SELECT * FROM board WHERE board_no = #{stuNum}
     </select>
+
 
 
 

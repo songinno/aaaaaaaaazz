@@ -53,10 +53,17 @@
                     <tr>
                         <td>${b.boardNo}</td>
                         <td>${b.writer}</td>
-                        <td>${b.title}</td>
+                        <td>
+                            ${b.title}
+                            <!-- test가 true면 c:if가 작동. -->
+                            <c:if test="${b.newFlag}">
+                                <span class="badge rounded-pill bg-danger">new</span>
+                            </c:if>
+                        </td>
                         <td>${b.viewCnt}</td>
                         <td>
-                            <fmt:formatDate value="${b.regDate}" pattern="yyyy년 MM월 dd일 hh:mm" />
+                            <fmt:formatDate value="${b.regDate}" pattern="yyyy년 MM월 dd일 a hh:mm" />
+                            <!-- 대문자 HH로 쓰면 00~24시 -->
                         </td>
                     </tr>
                 </c:forEach>
