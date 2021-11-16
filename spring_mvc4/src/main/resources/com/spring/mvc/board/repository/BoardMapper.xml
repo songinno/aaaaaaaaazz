@@ -48,6 +48,12 @@
         SELECT * FROM board WHERE board_no = #{stuNum}
     </select>
 
+    <!-- 총 게시물수 조회  -->
+    <select id="getTotalCount" resultType="int">
+        <!-- 결과가 숫자 1개 ->  resultType="int" -->
+        SELECT COUNT(*) FROM board
+    </select>
+
 
 
 

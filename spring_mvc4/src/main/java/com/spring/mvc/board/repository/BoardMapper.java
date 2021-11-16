@@ -27,4 +27,8 @@ public interface BoardMapper {
     //게시물 수정
     boolean update(ModBoard board);
 
+    // 총 게시물 수
+    int getTotalCount(); //-> xml에 select문 생성. -> service 중간처리
+
+
 }

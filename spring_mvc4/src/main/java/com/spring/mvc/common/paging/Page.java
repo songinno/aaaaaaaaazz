@@ -21,6 +21,7 @@ public class Page {
             this.pageNum = 1;
             return;
         }
+        this.pageNum = pageNum;
     }
 
     public void setAmount(int amount) {

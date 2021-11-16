@@ -4,6 +4,7 @@ import com.spring.mvc.board.domain.Board;
 import com.spring.mvc.board.dto.ModBoard;
 import com.spring.mvc.board.service.BoardService;
 import com.spring.mvc.common.paging.Page;
+import com.spring.mvc.common.paging.PageMaker;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -39,8 +40,12 @@ public class BoardController {
     public String list(Page page, Model model) {
 //        log.info("/board/list GET!");
         log.info("/board/list GET! -> " + page);
+//        log.info("pageNum: " + page.getPageNum());
+//        log.info("amount: " + page.getAmount());
         List<Board> boardList = boardService.getList(page);
         model.addAttribute("articles", boardList);
+        model.addAttribute("pageInfo", new PageMaker(page, boardService.getCount()));
+        //총 게시물수 db한테 달라고해야함 -> boardMapper 가서 메서드 만듦.
         return "board/list";
     }
 
