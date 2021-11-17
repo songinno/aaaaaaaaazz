@@ -10,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -44,7 +45,7 @@ public class BoardController {
 //        log.info("amount: " + page.getAmount());
         List<Board> boardList = boardService.getList(page);
         model.addAttribute("articles", boardList);
-        model.addAttribute("pageInfo", new PageMaker(page, boardService.getCount()));
+        model.addAttribute("pageInfo", new PageMaker(page, boardService.getCount(page)));
         //총 게시물수 db한테 달라고해야함 -> boardMapper 가서 메서드 만듦.
         return "board/list";
     }
@@ -63,13 +64,15 @@ public class BoardController {
         boardService.write(board);
         return "redirect:/board/list";
     }
-    //상세조회 요청
+    //상세조회 요청 ++목록으로 돌아가기 기능
     // /board/content?boardNo=x
     @GetMapping("/content")
-    public String content(Long boardNo, Model model){
+    public String content(Long boardNo, @ModelAttribute("p") Page page, Model model){
         log.info("/board/content GET!" + boardNo);
         Board board = boardService.get(boardNo);
         model.addAttribute("b", board);
+
+//        model.addAttribute("p", page); ->  @ModelAttribute("p")
         return "board/content";
     }
 

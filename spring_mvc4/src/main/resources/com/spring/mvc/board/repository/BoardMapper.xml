@@ -31,15 +31,38 @@
     </resultMap>
 
     <!-- 전체 조회  -->
+    <!--+++21.11.17 (검색을 할때 ,안할때 둘다 이거를 쓰고싶음)-->
     <select id="getArticles" resultMap="boardMap">
 <!--        SELECT * FROM board ORDER BY board_no DESC-->
         <![CDATA[
             SELECT
             board_no, title, writer, content, view_cnt, reg_date
             FROM
-            (SELECT /*+INDEX_DESC(board pk_board)*/ rownum rn, board_no, title, writer, content, view_cnt, reg_date FROM board WHERE rownum <= #{pageNum} * #{amount})
-            WHERE rn >  (#{pageNum} - 1) * #{amount}
+            (SELECT /*+INDEX_DESC(board pk_board)*/
+                rownum rn, board_no, title, writer, content, view_cnt, reg_date
+                FROM board
+                WHERE rownum <= #{pageNum} * #{amount}
         ]]>
+                <if test="type == 'title'">
+                    AND title LIKE '%' || #{keyword} || '%'
+                </if>
+                <if test="type == 'writer'">
+                    AND writer LIKE '%' || #{keyword} || '%'
+                </if>
+                <if test="type == 'content'">
+                    AND content LIKE '%' || #{keyword} || '%'
+                </if>
+                <if test="type == 'titleContent'">
+                    AND title LIKE '%' || #{keyword} || '%'
+                        OR content LIKE '%' || #{keyword} || '%'
+                </if>
+        <![CDATA[
+                )
+            WHERE rn > (#{pageNum} - 1) * #{amount}
+        ]]>
+    <!--AND title LIKE '%#{keyword}%' 이렇게하면 -> '%'ㅎㅇ'%' 이렇게 되는거. keyword가 String이라서. => 더해서 처리 '%' || #{keyword} || '%'     -->
+    <!--#{type} 이것도 '' 안에 들어옴.(String이라서) -->
+    <!-- 동적sql로 설정해줌 조건을 : <if test="">-->
     <!-- CDATA: <,>,= 같은거 쓸 수 있게 해주는거 -->
     </select>
 
@@ -48,10 +71,27 @@
         SELECT * FROM board WHERE board_no = #{stuNum}
     </select>
 
-    <!-- 총 게시물수 조회  -->
+    <!-- 총 게시물수 조회  +++21.11.17: WHERE 1=1~ 추가-->
     <select id="getTotalCount" resultType="int">
         <!-- 결과가 숫자 1개 ->  resultType="int" -->
-        SELECT COUNT(*) FROM board
+        SELECT
+            COUNT(*)
+        FROM board
+        WHERE 1=1
+        <if test="type == 'title'">
+            AND title LIKE '%' || #{keyword} || '%'
+        </if>
+        <if test="type == 'writer'">
+            AND writer LIKE '%' || #{keyword} || '%'
+        </if>
+        <if test="type == 'content'">
+            AND content LIKE '%' || #{keyword} || '%'
+        </if>
+        <if test="type == 'titleContent'">
+            AND title LIKE '%' || #{keyword} || '%'
+            OR content LIKE '%' || #{keyword} || '%'
+        </if>
+    <!-- WHERE 1=1 붙여줘야 AND를 다 써먹을 수 있음.(안그럼 각각 다 붙여줘야됨) -->
     </select>
 
 

@@ -28,7 +28,8 @@ public interface BoardMapper {
     boolean update(ModBoard board);
 
     // 총 게시물 수
-    int getTotalCount(); //-> xml에 select문 생성. -> service 중간처리
+    int getTotalCount(Page page); //-> xml에 select문 생성. -> service 중간처리
+    //+++21.11.17 : Page page 추가, 서비스, 컨트롤러에도 추가, XML 수정.
 
 
 }

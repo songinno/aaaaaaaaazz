@@ -2,9 +2,10 @@ package com.spring.mvc.common.paging;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 //페이지 생성정보를 만들어주는 객체 (1~5/ 6~10/ 20~25 / prev, next 줄까 말까
-@Getter @Setter
+@Getter @Setter @ToString
 public class PageMaker {
 
     //한 화면에 배치할 페이지 수
