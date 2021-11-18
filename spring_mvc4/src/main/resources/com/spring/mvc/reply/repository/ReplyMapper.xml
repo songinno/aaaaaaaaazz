@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mvc.reply.repository.ReplyMapper">
+
+    <resultMap id="replyMap" type="com.spring.mvc.reply.domain.Reply">
+        <result property="replyNo" column="reply_no"/>
+        <result property="replyText" column="reply_text"/>
+        <result property="replyWriter" column="reply_writer"/>
+        <result property="replyDate" column="reply_date"/>
+        <result property="boardNo" column="board_no"/>
+    </resultMap>
+
+    <!-- 댓글입력 -->
+    <insert id="save">
+        INSERT INTO reply (reply_no, reply_text, reply_writer, board_no)
+        VALUES (seq_reply.nextval, #{replyText}, #{replyWriter}, #{boardNo})
+    </insert>
+
+    <!-- 댓글 수정 -->
+    <update id="update">
+        UPDATE reply
+        SET reply_text = #{replyText}
+        WHERE reply_no = #{replyNo}
+    </update>
+
+    <!-- 댓글 삭제 -->
+    <delete id="delete">
+        DELETE FROM reply
+        WHERE reply_no = #{replyNo}
+    </delete>
+
+    <!-- 댓글 개별조회 -->
+    <select id="read" resultMap="replyMap">
+        SELECT * FROM reply
+        WHERE reply_no = #{replyNo}
+    </select>
+
+    <!-- 댓글 목록조회 -->
+    <select id="getList" resultMap="replyMap">
+        SELECT * FROM reply
+        WHERE board_no = #{boardNo}
+    </select>
+
+</mapper>
