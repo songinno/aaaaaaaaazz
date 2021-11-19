@@ -7,11 +7,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Controller
+//@
+@RestController // Controller + @ResponseBody -> jsp 안쓸거면 이걸로하면 @ResponseBody 안붙여도 일괄적용됨.
 @RequiredArgsConstructor
 public class ApiController {
 
@@ -55,11 +57,7 @@ public class ApiController {
     @ResponseBody
     public List<Board> bList() {
 
-        return boardService.getList(new Page());
+        return boardService.getList(new Page()); //=> [{},{},{},{},...]
     }
-
-
-
-
 
 }

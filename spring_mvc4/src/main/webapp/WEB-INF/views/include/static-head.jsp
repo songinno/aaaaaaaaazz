@@ -53,3 +53,6 @@
 <!-- custom js -->
 <script src="/js/gnb-event.js" defer></script>
 
+<!-- jquery (++3rytl)-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+

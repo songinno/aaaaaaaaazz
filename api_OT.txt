@@ -1,0 +1,87 @@
+[21.11.18]
+동영상 보면서 댓글달면 새로고침되면, 동영상이 처음부터 재생됨
+-> 비동기 요청. (지금까지는 동기요청, 새로운 페이지를 받아오는거)
+
+데이터만 받아오는 것.화면은 그대로 데이터만 받아서 필요한곳에 dom을 만들어서 배치.
+
+교안 웹의이해
+43p
+
+정적 리소스: resources - static 
+
+============
+사진요청: http://localhost:8081/img/contact.jpg
+http://localhost:8081/css/main.css -> css갖다줌.
+=> 이것들이 정적 리소스
+
+지금까지 했던 방식
+jsp 만들어서 하는거.
+문제점) 응답을 html. 웹브라우저는 해석 가능. iphone은 해석 못함. 사파리라는 앱이 아는거. 
+컴퓨터도 운영체제는 모름. 브라우저가 알고.
+
+=>> HTTP API 기법을 이용
+
+-----------------------------------------------------------------------------------------------------------
+댓글기능은 -> 클라이언트사이드렌더링 기술로 만듦.
+
+
+테이블 > domain > repository > xml >테스트 > service
+
+board 상세조회할때 댓글들이 나오는거. boardcontroller에 replyservice로 가져와야함. 뭐하러 이렇게 하냐.
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+[21.11.20]
+http api 를 rest api 라고 부름.
+--부메랑--
+
+
+POST
+http://localhost:8081/api/v1/reply
+JSON
+{
+    "replyText": "제이슨 댓글",
+    "replyWriter": "김제이슨",
+    "boardNo": 323
+    
+}
+
+GET
+http://localhost:8081/api/v1/reply?boardNo=323
+
+-> 댓글추가되어있음
+
+DELETE
+http://localhost:8081/api/v1/reply/1
+
+//////////
+//------21.11.19 댓글 목록 비동기 요청 함수------
+        // function getReplyList() {
+        //     const boardNo = '${b.boardNo}';
+        //     fetch('/api/v1/reply?boardNo=' + boardNo)
+        //         .then(res => res.json())//fetch 요청하면 respoonse덩어리가 옴. 그걸 콜백으로 받아서, json만 리턴하겠.
+        //         .then(replyList => {
+        //             const $ul = document.querySelector('.replies');
+        //             for (let rep of replyList) {
+        //                 const $li = document.createElement('li');
+        //                 $li.textContent = rep.replyText + '//' + rep.replyWriter;
+        //                 $ul.appendChild($li);
+        //             }
+        //         });
+
+        // }
+        // getReplyList();
+        //.then(res => log(res.json()))하면
+        // Promise {<pending>}
+        // [[Prototype]]: Promise
+        // [[PromiseState]]: "fulfilled"
+        // [[PromiseResult]]: Array(99)
+
+
+
+
+
+
+
+
+
+
+
