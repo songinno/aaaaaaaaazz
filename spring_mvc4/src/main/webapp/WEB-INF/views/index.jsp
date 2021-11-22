@@ -168,7 +168,7 @@
 
         <%@ include file="include/footer.jsp" %>
 
-        <script>
+        <!-- <script>
             //버튼의 요소 노드 취득
             const menuBtn = document.querySelector('header .menu-open');
             const closeBtn = document.querySelector('.gnb .close');
@@ -183,7 +183,7 @@
             closeBtn.addEventListener('click', e => {
                 gnb.classList.remove('on');
             });
-        </script>
+        </script> -->
 
     </div>
 
