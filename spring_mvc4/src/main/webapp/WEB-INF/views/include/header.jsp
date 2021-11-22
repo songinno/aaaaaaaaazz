@@ -25,7 +25,7 @@
             <li><a href="/board/list">Board</a></li>
             <li><a href="/hello.jsp">Contact</a></li>
             <li><a href="/login-form">Login</a></li>
-            <li><a href="/s-login-form">S-Login</a></li>
+            <li><a href="/join">Join</a></li>
         </ul>
     </nav>
 
