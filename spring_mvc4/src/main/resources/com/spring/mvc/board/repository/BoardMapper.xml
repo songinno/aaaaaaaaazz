@@ -7,8 +7,8 @@
 
     <!-- 저장기능-->
     <insert id="insert">
-        INSERT INTO board (board_no, writer, title, content)
-        VALUES (seq_board.nextval, #{writer}, #{title}, #{content})
+        INSERT INTO board (board_no, writer, title, content, account)
+        VALUES (seq_board.nextval, #{writer}, #{title}, #{content}, #{account})
     </insert>
 
     <!--점수 제거 기능-->

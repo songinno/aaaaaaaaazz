@@ -8,7 +8,7 @@
                 <img src="/img/logo.png" alt="로고이미지">
             </a>
         </h1>
-        <h2 class="intro-text">Welcome</h2>
+        <h2 class="intro-text">Welcome ${loginUser.name}</h2>
         <a href="#" class="menu-open">
             <span class="menu-txt">MENU</span>
             <span class="lnr lnr-menu"></span>
@@ -24,8 +24,16 @@
             <li><a href="/score/list">Score App</a></li>
             <li><a href="/board/list">Board</a></li>
             <li><a href="/hello.jsp">Contact</a></li>
-            <li><a href="/login-form">Login</a></li>
-            <li><a href="/join">Join</a></li>
+            <!-- 로그인 안한애들만 보면됨 -->
+            <c:if test="${loginUser == null}">
+                <li><a href="/login">Login</a></li>
+                <li><a href="/join">Join</a></li>
+            </c:if>
+
+            <c:if test="${loginUser != null}">
+                <li><a href="#">MyPage</a></li>
+                <li><a href="/sign-out">Logout</a></li>
+            </c:if>
         </ul>
     </nav>
 

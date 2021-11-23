@@ -23,6 +23,9 @@ public class Board {
     private boolean newFlag; // 신규글 여부
     private Date updateDate; // 최종 수정시간
 
+    //++++
+    private String account; // 작성자 아이디 -> 보드 xml고치러 ㄱ
+
     private static long seq;
 
     public Board() {
